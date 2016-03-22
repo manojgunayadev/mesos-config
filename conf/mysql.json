@@ -1,0 +1,35 @@
+{
+	"id": "mysql",
+	"cpus": 0.25,
+	"mem": 512,
+	"instances": 1,
+	"container": {
+		"type": "DOCKER",
+		"docker": {
+			"image": "mysql:5.6.27",
+			"network": "BRIDGE",			
+              "portMappings": [
+                {
+                  "containerPort": 3306,
+                  "hostPort": 32000,
+                  "servicePort" : 2000 ,
+                  "protocol": "tcp"
+                }
+                ],
+                "parameters": [{
+                "key": "dns",
+                "value": "192.168.54.209"
+            },{ "key": "hostname", "value": "mysqldb" }]
+		}
+	},
+	"constraints": [
+            [
+              "hostname",
+              "UNIQUE"
+            ]],
+	"env": {
+		"MYSQL_ROOT_PASSWORD": "password"	
+	},
+      "minimumHealthCapacity" :0,
+      "maximumOverCapacity" : 0.0
+}

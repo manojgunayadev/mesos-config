@@ -1,0 +1,248 @@
+{
+  "id": "/testing",
+  "groups": [
+    {
+      "id": "/testing/database",
+      "apps": [
+        {
+          "id": "/testing/database/mysql",
+          "instances": 1,
+          "mem": 512.0,
+          "cpus": 0.25,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "mysql:5.6.27",
+              "network": "BRIDGE",
+              "portMappings": [
+                {
+                  "containerPort": 3306,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                }
+              ]
+            }
+          },
+          "constraints": [
+            [
+              "hostname",
+              "UNIQUE"
+            ]
+          ],
+          "env": {
+            "MYSQL_ROOT_PASSWORD": "password"
+          }
+        },
+        {
+          "id": "/testing/database/postgres",
+          "instances": 1,
+          "mem": 512.0,
+          "cpus": 0.25,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "postgres:9.5",
+              "network": "BRIDGE",
+              "portMappings": [
+                {
+                  "containerPort": 5432,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                }
+              ]
+            }
+          },
+          "constraints": [
+            [
+              "hostname",
+              "UNIQUE"
+            ]
+          ],
+          "env": {
+            "POSTGRES_PASSWORD": "password"
+          }
+        }
+      ]
+    },
+    {
+      "id": "/testing/wso2",
+      "apps": [
+        {
+          "id": "/testing/wso2/apimanager-gateway",
+          "instances": 1,
+          "mem": 1024.0,
+          "cpus": 1,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "wso2am",
+              "network": "BRIDGE",
+              "portMappings": [
+                {
+                  "containerPort": 9443,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 9763,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 8283,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 8243,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 4000,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                }
+              ]
+            }
+          },
+          "constraints": [
+            [
+              "hostname",
+              "UNIQUE"
+            ]
+          ],
+          "dependencies": [
+            "/testing/database/mysql"
+          ],
+          "env": {
+            "SQL_SERVER": "/usr/bin/curl 'http://master.mesos:8123/v1/services/_mysql-database-testing._tcp.marathon.mesos'",
+            "FACTER_fqdn": "apimanager",
+            "APIM_NODE": "apimanager::gateway",
+            "MYSQL_ROOT_PASSWORD": "password",
+            "MESOS_GATEWAY_AM_DOMAIN": "apimanager-gateway-wso2-testing.marathon.mesos",
+            "MESOS_KEYMANAGER_AM_DOMAIN": "apimanager-keymanager-wso2-testing.marathon.mesos",
+            "MESOS_PUBSTORE_AM_DOMAIN": "apimanager-pubstore-wso2-testing.marathon.mesos"
+
+          }
+        },
+        {
+          "id": "/testing/wso2/apimanager-pubstore",
+          "instances": 1,
+          "mem": 1024.0,
+          "cpus": 1,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "wso2am",
+              "network": "BRIDGE",
+              "portMappings": [
+                {
+                  "containerPort": 9443,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 9763,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 8283,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 8243,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 4000,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                }
+              ]
+            }
+          },
+          "constraints": [
+            [
+              "hostname",
+              "UNIQUE"
+            ]
+          ],
+          "dependencies": [
+            "/testing/database/mysql"
+          ],
+          "env": {
+            "SQL_SERVER": "/usr/bin/curl 'http://master.mesos:8123/v1/services/_mysql-database-testing._tcp.marathon.mesos'",
+            "FACTER_fqdn": "apimanager",
+            "APIM_NODE": "apimanager::pubstore",
+            "MYSQL_ROOT_PASSWORD": "password",
+            "MESOS_GATEWAY_AM_DOMAIN": "apimanager-gateway-wso2-testing.marathon.mesos",
+            "MESOS_KEYMANAGER_AM_DOMAIN": "apimanager-keymanager-wso2-testing.marathon.mesos",
+            "MESOS_PUBSTORE_AM_DOMAIN": "apimanager-pubstore-wso2-testing.marathon.mesos"
+          }
+        },
+        {
+          "id": "/testing/wso2/apimanager-keymanager",
+          "instances": 1,
+          "mem": 1024,
+          "cpus": 1,
+          "container": {
+            "type": "DOCKER",
+            "docker": {
+              "image": "wso2am",
+              "network": "BRIDGE",
+              "portMappings": [
+                {
+                  "containerPort": 9443,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 9763,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 8283,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 8243,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 4000,
+                  "hostPort": 0,
+                  "protocol": "tcp"
+                }
+              ]
+            }
+          },
+          "constraints": [
+            [
+              "hostname",
+              "UNIQUE"
+            ]
+          ],
+          "dependencies": [
+            "/testing/database/mysql"
+          ],
+          "env": {
+            "SQL_SERVER": "/usr/bin/curl 'http://master.mesos:8123/v1/services/_mysql-database-testing._tcp.marathon.mesos'",
+            "FACTER_fqdn": "apimanager",
+            "APIM_NODE": "apimanager::keymanager",
+            "MYSQL_ROOT_PASSWORD": "password",
+            "MESOS_GATEWAY_AM_DOMAIN": "apimanager-gateway-wso2-testing.marathon.mesos",
+            "MESOS_KEYMANAGER_AM_DOMAIN": "apimanager-keymanager-wso2-testing.marathon.mesos",
+            "MESOS_PUBSTORE_AM_DOMAIN": "apimanager-pubstore-wso2-testing.marathon.mesos"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+	"id": "pubstore2.api",
+	"cpus": 0.25,
+	"mem": 1024,
+	"instances": 1,
+	"container": {
+		"type": "DOCKER",
+		"docker": {
+			"image": "apim:latest",
+			"network": "BRIDGE",
+              "portMappings": [
+                {
+                  "containerPort": 9443,
+                  "hostPort": 31150,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 9763,
+                  "hostPort": 31250,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 8280,
+                  "hostPort": 31350,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 8243,
+                  "hostPort": 31450,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 4000,
+                  "hostPort": 31550,
+                  "protocol": "tcp"
+                }
+              ],
+                "parameters": [{
+                "key": "dns",
+                "value": "192.168.54.209"
+            }]
+		}
+	},
+	"env": {
+		"MYSQL_ROOT_PASSWORD": "password",
+		 "APIM_NODE": "apimanager::pubstore",
+         "MYSQL_PORT_3306_TCP_ADDR": "mysql.marathon.slave.mesos.",
+         "MYSQL_PORT_3306_tcp_PORT" : "32000",
+         "LOCAL_MEMBER_HOST" : "pubstore2.api.marathon.slave.mesos.",
+         "LOCAL_MEMBER_PORT" : "31550",
+         "MEMBER1_HOST" : "pubstore1.api.marathon.slave.mesos.",
+         "MEMBER1_PORT" : "31540",
+         "MEMBER2_HOST" : "gw2.api.marathon.slave.mesos.",
+         "MEMBER2_PORT" : "31530",
+         "MGT_HOST_NAME" : "mgt.api.verizon.com",
+         "SUB_CLUSTER_DOMAIN" : "worker",
+         "FACTER_fqdn" : "apimanager",
+         "PROFILE_NAME" : "api-pubstore"
+	},
+      "minimumHealthCapacity" :0,
+      "maximumOverCapacity" : 0.0
+}

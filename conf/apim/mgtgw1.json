@@ -1,0 +1,63 @@
+{
+	"id": "mgtgw1.api",
+	"cpus": 1,
+	"mem": 2048,
+	"instances": 1,
+	"container": {
+		"type": "DOCKER",
+		"docker": {
+			"image": "apim:latest",
+			"network": "BRIDGE",
+              "portMappings": [
+                {
+                  "containerPort": 9443,
+                  "hostPort": 31100,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 9763,
+                  "hostPort": 31200,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 8280,
+                  "hostPort": 31300,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 8243,
+                  "hostPort": 31400,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 4000,
+                  "hostPort": 31500,
+                  "protocol": "tcp"
+                }
+              ],
+                "parameters": [{
+                "key": "dns",
+                "value": "192.168.54.209"
+            }]
+		}
+	},
+	"env": {
+		"MYSQL_ROOT_PASSWORD": "password",
+		 "APIM_NODE": "apimanager::gateway",
+         "MYSQL_PORT_3306_TCP_ADDR": "mysql.marathon.slave.mesos.",
+         "MYSQL_PORT_3306_tcp_PORT" : "32000",
+         "LOCAL_MEMBER_HOST" : "mgtgw1.api.marathon.slave.mesos.",
+         "LOCAL_MEMBER_PORT" : "31500",
+         "MEMBER1_HOST" : "gw1.api.marathon.slave.mesos.",
+         "MEMBER1_PORT" : "31520",
+         "MEMBER2_HOST" : "mgtgw2.api.marathon.slave.mesos.",
+         "MEMBER2_PORT" : "31510",
+         "MGT_HOST_NAME" : "mgt.api.verizon.com",
+         "SUB_CLUSTER_DOMAIN" : "mgt",
+         "FACTER_fqdn" : "apimanager",
+         "PROFILE_NAME" : "gateway-manager"
+         
+	},
+      "minimumHealthCapacity" :0,
+      "maximumOverCapacity" : 0.0
+}

@@ -1,0 +1,30 @@
+{
+	"id": "dnsmasq",
+	"cpus": 0.5,
+	"mem": 256.0,
+	"instances": 1,
+	"container": {
+		"type": "DOCKER",
+		"docker": {
+			"image": "dnsmassq:latest",
+			"network": "BRIDGE",
+            "parameters": [
+                { "key": "hostname", "value": "mysqldbpc" },
+                { "key": "name", "value": "mysqldbpc" }
+                
+            ],
+			"portMappings": [{
+				"containerPort": 3306,
+				"hostPort": 0,
+				"protocol": "tcp"
+			}]
+		}
+	},
+    "constraints": [["hostname", "UNIQUE"]],
+	"env": {
+		"MYSQL_ROOT_PASSWORD": "password",
+	    "$MYSQL_PORT_3306_TCP_PORT": "3306"		
+	},
+      "minimumHealthCapacity" :0,
+      "maximumOverCapacity" : 0.0
+}
