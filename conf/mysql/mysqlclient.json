@@ -1,0 +1,30 @@
+{
+	"id": "mysqlclient",
+	"cpus": 0.25,
+	"mem": 512.0,
+	"cmd": "/scripts/create_mysql_dbs.sh",
+	"instances": 1,
+	"container": {
+		"type": "DOCKER",
+		"docker": {
+			"image": "mysqlclient:latest",
+			"network": "BRIDGE",			
+			"portMappings": [{
+				"containerPort": 3306,
+				"hostPort": 0,
+				"protocol": "tcp"
+			}],
+                "parameters": [{
+                "key": "dns",
+                "value": "192.168.54.209"
+            }]
+		}
+	},
+	"env": {
+		"MYSQL_ENV_MYSQL_ROOT_PASSWORD": "password",
+        "MYSQL_PORT_3306_TCP_ADDR": "mysql.marathon.slave.mesos.",
+	    "MYSQL_PORT_3306_TCP_PORT": "32000"		
+	},
+      "minimumHealthCapacity" :0,
+      "maximumOverCapacity" : 0.0
+}
