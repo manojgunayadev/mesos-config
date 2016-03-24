@@ -35,10 +35,14 @@
                   "protocol": "tcp"
                 }
               ],
-                "parameters": [{
-                "key": "dns",
-                "value": "192.168.54.209"
-            }]
+                "parameters": [
+                {"key": "dns", "value": "192.168.54.209"},
+                { "key": "hostname", "value": "mgtgw1.api" },
+                { "key": "add-host", "value": "gw.api.verizon.com:192.168.54.208"},
+                { "key": "add-host", "value": "mgtgw.api.verizon.com:192.168.54.209 },
+                { "key": "add-host", "value": "pubstore.api.verizon.com:192.168.54.205"},
+                { "key": "add-host", "value": "km.api.verizon.com:192.168.54.221"}
+                ]
 		}
 	},
 	"env": {
