@@ -21,13 +21,13 @@ public class Initiator {
  */
 		  try {
 
-			URL url = new URL("http://192.168.54.208:8080/v2/apps");
+			URL url = new URL("http://localhost:8080/v2/apps");
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/json");
 			
-			String input = readFile("/home/manoj/support/verizone/workspace/MesosClusterSetup/conf/mysql.json",Charset.defaultCharset());
+			String input = readFile("/home/manoj/support/verizone/workspace/MesosClusterSetup/conf/apim/gw1.json",Charset.defaultCharset());
 			System.out.println(input);
 
 			OutputStream os = conn.getOutputStream();
