@@ -1,5 +1,5 @@
 {
-	"id": "gw2.api",
+	"id": "gw2",
 	"cpus": 0.25,
 	"mem": 1024,
 	"instances": 1,
@@ -37,7 +37,7 @@
               ],
                 "parameters": [
                 {"key": "dns", "value": "192.168.54.209"},
-                { "key": "hostname", "value": "gw2.api" },
+                { "key": "hostname", "value": "gw2" },
                 { "key": "add-host", "value": "gw.api.verizon.com:192.168.54.208"},
                 { "key": "add-host", "value": "mgtgw.api.verizon.com:192.168.54.209" },
                 { "key": "add-host", "value": "pubstore.api.verizon.com:192.168.54.205"},
@@ -50,13 +50,13 @@
 		 "APIM_NODE": "apimanager::gateway",
          "MYSQL_PORT_3306_TCP_ADDR": "mysql.marathon.slave.mesos.",
          "MYSQL_PORT_3306_tcp_PORT" : "32000",
-         "LOCAL_MEMBER_HOST" : "gw2.api.marathon.slave.mesos.",
+         "LOCAL_MEMBER_HOST" : "gw2.marathon.slave.mesos.",
          "LOCAL_MEMBER_PORT" : "31530",
-         "MEMBER1_HOST" : "gw1.api.marathon.slave.mesos.",
+         "MEMBER1_HOST" : "gw1.marathon.slave.mesos.",
          "MEMBER1_PORT" : "31520",
-         "MEMBER2_HOST" : "km2.api.marathon.slave.mesos.",
+         "MEMBER2_HOST" : "km2.marathon.slave.mesos.",
          "MEMBER2_PORT" : "31580",
-         "MGT_HOST_NAME" : "mgt.api.verizon.com",
+         "MGT_HOST_NAME" : "gw.api.verizon.com",
          "SUB_CLUSTER_DOMAIN" : "worker",
          "FACTER_fqdn" : "apimanager",
          "PROFILE_NAME" : "gateway-worker"
