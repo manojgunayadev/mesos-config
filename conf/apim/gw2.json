@@ -1,6 +1,6 @@
 {
 	"id": "gw2",
-	"cpus": 0.25,
+	"cpus": 0.40,
 	"mem": 1024,
 	"instances": 1,
 	"container": {
@@ -11,33 +11,36 @@
               "portMappings": [
                 {
                   "containerPort": 9443,
-                  "hostPort": 31130,
+                  "hostPort": 0,
+                  "servicePort": 10000,
                   "protocol": "tcp"
                 },
                 {
                   "containerPort": 9763,
-                  "hostPort": 31230,
+                  "hostPort": 0,
                   "protocol": "tcp"
                 },
                 {
                   "containerPort": 8280,
-                  "hostPort": 31330,
+                  "hostPort": 0,
+                  "servicePort": 10001,                  
                   "protocol": "tcp"
                 },
                 {
                   "containerPort": 8243,
-                  "hostPort": 31430,
+                  "hostPort": 0,
+                  "servicePort": 10002,                  
                   "protocol": "tcp"
                 },
                 {
-                  "containerPort": 4000,
+                  "containerPort": 31530,
                   "hostPort": 31530,
                   "protocol": "tcp"
                 }
               ],
                 "parameters": [
                 {"key": "dns", "value": "192.168.54.209"},
-                { "key": "hostname", "value": "gw2" },
+                { "key": "hostname", "value": "gw2.marathon.slave.mesos." },
                 { "key": "add-host", "value": "gw.api.verizon.com:192.168.54.208"},
                 { "key": "add-host", "value": "mgtgw.api.verizon.com:192.168.54.209" },
                 { "key": "add-host", "value": "pubstore.api.verizon.com:192.168.54.205"},
@@ -54,12 +57,13 @@
          "LOCAL_MEMBER_PORT" : "31530",
          "MEMBER1_HOST" : "gw1.marathon.slave.mesos.",
          "MEMBER1_PORT" : "31520",
-         "MEMBER2_HOST" : "km2.marathon.slave.mesos.",
-         "MEMBER2_PORT" : "31580",
          "MGT_HOST_NAME" : "gw.api.verizon.com",
          "SUB_CLUSTER_DOMAIN" : "worker",
          "FACTER_fqdn" : "apimanager",
-         "PROFILE_NAME" : "gateway-worker"
+         "PROFILE_NAME" : "gateway-worker",
+         "DEPSYNC_SVN_REPO" : "https://svn.wso2.com/wso2/interns/2013/manojg/clusterdata",
+         "SVN_USER" : "manojg@wso2.com",
+         "SVN_PASSWORD" : "manoj@Gunaya123"
 	},
       "minimumHealthCapacity" :0,
       "maximumOverCapacity" : 0.0

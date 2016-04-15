@@ -1,43 +1,46 @@
 {
-	"id": "km2",
-	"cpus": 0.25,
+	"id": "gw1",
+	"cpus": 0.40,
 	"mem": 1024,
 	"instances": 1,
 	"container": {
 		"type": "DOCKER",
 		"docker": {
-			"image": "apim:latest",
+			"image": "apimnew:latest",
 			"network": "BRIDGE",
               "portMappings": [
+                { 
+                "containerPort": 0, 
+                 "hostPort": 0, 
+                 "protocol": "tcp" 
+                 },
                 {
                   "containerPort": 9443,
-                  "hostPort": 31180,
+                  "hostPort": 0,
+                  "servicePort": 10000,
                   "protocol": "tcp"
                 },
                 {
                   "containerPort": 9763,
-                  "hostPort": 31280,
+                  "hostPort": 0,
                   "protocol": "tcp"
                 },
                 {
                   "containerPort": 8280,
-                  "hostPort": 31380,
+                  "hostPort": 0,
+                  "servicePort": 10001,
                   "protocol": "tcp"
                 },
                 {
                   "containerPort": 8243,
-                  "hostPort": 31480,
-                  "protocol": "tcp"
-                },
-                {
-                  "containerPort": 31580,
-                  "hostPort": 31580,
+                  "hostPort": 0,
+                  "servicePort": 10002,
                   "protocol": "tcp"
                 }
               ],
                 "parameters": [
                 {"key": "dns", "value": "192.168.54.209"},
-                { "key": "hostname", "value": "km2.marathon.slave.mesos." },
+                { "key": "hostname", "value": "gw1.marathon.slave.mesos." },
                 { "key": "add-host", "value": "gw.api.verizon.com:192.168.54.208"},
                 { "key": "add-host", "value": "mgtgw.api.verizon.com:192.168.54.209" },
                 { "key": "add-host", "value": "pubstore.api.verizon.com:192.168.54.205"},
@@ -47,20 +50,21 @@
 	},
 	"env": {
 		 "MYSQL_ROOT_PASSWORD": "password",
-		 "APIM_NODE": "apimanager::keymanager",
+		 "APIM_NODE": "apimanager::gateway",
          "MYSQL_PORT_3306_TCP_ADDR": "mysql.marathon.slave.mesos.",
          "MYSQL_PORT_3306_tcp_PORT" : "32000",
-         "LOCAL_MEMBER_HOST" : "km2.marathon.slave.mesos.",
-         "LOCAL_MEMBER_PORT" : "31580",
-         "MEMBER1_HOST" : "km1.marathon.slave.mesos.",
-         "MEMBER1_PORT" : "31570",
-         "MGT_HOST_NAME" : "km.api.verizon.com",
+         "LOCAL_MEMBER_HOST" : "gw1.marathon.slave.mesos.",
+         "LOCAL_MEMBER_PORT" : "31520",
+         "MEMBER1_HOST" : "gw2.marathon.slave.mesos.",
+         "MEMBER1_PORT" : "31530",
+         "MGT_HOST_NAME" : "gw.api.verizon.com",
          "SUB_CLUSTER_DOMAIN" : "worker",
          "FACTER_fqdn" : "apimanager",
-         "PROFILE_NAME" : "api-key-manager",
-         "DEPSYNC_SVN_REPO" : "https://svn.wso2.com/wso2/interns/2013/manojg/clusterdata",
+         "DEPSYNC_SVN_REPO" : "https://svn.wso2.com/wso2/interns/2013/manojg/clusterdata/",
          "SVN_USER" : "manojg@wso2.com",
-         "SVN_PASSWORD" : "manoj@Gunaya123"
+         "SVN_PASSWORD" : "manoj@Gunaya123",
+         "MESOS_HOST" : "192.168.54.208",
+         "MESOS_APPID" : "gw1"
 	},
       "minimumHealthCapacity" :0,
       "maximumOverCapacity" : 0.0

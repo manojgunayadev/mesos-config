@@ -30,14 +30,14 @@
                   "protocol": "tcp"
                 },
                 {
-                  "containerPort": 4000,
+                  "containerPort": 31540,
                   "hostPort": 31540,
                   "protocol": "tcp"
                 }
               ],
                 "parameters": [
                 {"key": "dns", "value": "192.168.54.209"},
-                { "key": "hostname", "value": "pubstore1" },
+                { "key": "hostname", "value": "pubstore1.marathon.slave.mesos." },
                 { "key": "add-host", "value": "gw.api.verizon.com:192.168.54.208"},
                 { "key": "add-host", "value": "mgtgw.api.verizon.com:192.168.54.209" },
                 { "key": "add-host", "value": "pubstore.api.verizon.com:192.168.54.205"},
@@ -54,11 +54,13 @@
          "LOCAL_MEMBER_PORT" : "31540",
          "MEMBER1_HOST" : "pubstore2.marathon.slave.mesos.",
          "MEMBER1_PORT" : "31550",
-         "MEMBER2_HOST" : "gw1.marathon.slave.mesos.",
-         "MEMBER2_PORT" : "31520",
          "MGT_HOST_NAME" : "pubstore.api.verizon.com",
          "SUB_CLUSTER_DOMAIN" : "worker",
-         "FACTER_fqdn" : "apimanager"
+         "FACTER_fqdn" : "apimanager",
+         "DEPSYNC_SVN_REPO" : "https://svn.wso2.com/wso2/interns/2013/manojg/clusterdata",
+         "SVN_USER" : "manojg@wso2.com",
+         "SVN_PASSWORD" : "manoj@Gunaya123"
+         
 	},
       "minimumHealthCapacity" :0,
       "maximumOverCapacity" : 0.0

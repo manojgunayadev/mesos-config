@@ -27,7 +27,7 @@ public class Initiator {
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/json");
 			
-			String input = readFile("/home/manoj/support/verizone/workspace/MesosClusterSetup/conf/apim/mgtgw2.json",Charset.defaultCharset());
+			String input = readFile("/home/manoj/support/verizone/workspace/MesosClusterSetup/conf/apim/gw1.json",Charset.defaultCharset());
 			System.out.println(input);
 
 			OutputStream os = conn.getOutputStream();
