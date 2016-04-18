@@ -27,7 +27,7 @@ public class Initiator {
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", "application/json");
 			
-			String input = readFile("/home/manoj/support/verizone/workspace/MesosClusterSetup/newconf/gw.json",Charset.defaultCharset());
+			String input = readFile("/home/manoj/support/verizone/workspace/MesosClusterSetup/mysql/mysql.json",Charset.defaultCharset());
 			System.out.println(input);
 
 			OutputStream os = conn.getOutputStream();
