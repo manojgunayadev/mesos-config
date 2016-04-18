@@ -1,8 +1,8 @@
 {
-	"id": "gw",
+	"id": "mgtgw",
 	"cpus": 0.40,
 	"mem": 1024,
-	"instances": 1,
+	"instances": 2,
 	"container": {
 		"type": "DOCKER",
 		"docker": {
@@ -50,15 +50,15 @@
 		 "APIM_NODE": "apimanager::gateway",
          "MYSQL_PORT_3306_TCP_ADDR": "mysql.marathon.slave.mesos.",
          "MYSQL_PORT_3306_tcp_PORT" : "32000",         
-         "MGT_HOST_NAME" : "gw.api.verizon.com",
-         "SUB_CLUSTER_DOMAIN" : "worker",
+         "MGT_HOST_NAME" : "mgtgw.api.verizon.com",
+         "SUB_CLUSTER_DOMAIN" : "mgt",
          "FACTER_fqdn" : "apimanager",
-         "PROFILE_NAME" : "gateway-worker",
          "DEPSYNC_SVN_REPO" : "https://svn.wso2.com/wso2/interns/2013/manojg/newcluster/",
          "SVN_USER" : "manojg@wso2.com",
          "SVN_PASSWORD" : "manoj@Gunaya123",
          "MESOS_HOST" : "192.168.54.208",
-         "MESOS_APPID" : "gw"
+         "MESOS_APPID" : "mgtgw",
+         "PROFILE_NAME" : "gateway-manager"
 	},
       "minimumHealthCapacity" :0,
       "maximumOverCapacity" : 0.0

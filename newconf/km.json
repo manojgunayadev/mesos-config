@@ -1,12 +1,12 @@
 {
-	"id": "gw",
+	"id": "km",
 	"cpus": 0.40,
 	"mem": 1024,
 	"instances": 1,
 	"container": {
 		"type": "DOCKER",
 		"docker": {
-			"image": "apim:latest",
+			"image": "is:latest",
 			"network": "BRIDGE",
               "portMappings": [
                 { 
@@ -23,16 +23,6 @@
                   "containerPort": 9763,
                   "hostPort": 0,
                   "protocol": "tcp"
-                },
-                {
-                  "containerPort": 8280,
-                  "hostPort": 0,
-                  "protocol": "tcp"
-                },
-                {
-                  "containerPort": 8243,
-                  "hostPort": 0,
-                  "protocol": "tcp"
                 }
               ],
                 "parameters": [
@@ -47,18 +37,15 @@
 	},
 	"env": {
 		 "MYSQL_ROOT_PASSWORD": "password",
-		 "APIM_NODE": "apimanager::gateway",
          "MYSQL_PORT_3306_TCP_ADDR": "mysql.marathon.slave.mesos.",
          "MYSQL_PORT_3306_tcp_PORT" : "32000",         
-         "MGT_HOST_NAME" : "gw.api.verizon.com",
+         "MGT_HOST_NAME" : "km.api.verizon.com",
          "SUB_CLUSTER_DOMAIN" : "worker",
-         "FACTER_fqdn" : "apimanager",
-         "PROFILE_NAME" : "gateway-worker",
          "DEPSYNC_SVN_REPO" : "https://svn.wso2.com/wso2/interns/2013/manojg/newcluster/",
          "SVN_USER" : "manojg@wso2.com",
          "SVN_PASSWORD" : "manoj@Gunaya123",
          "MESOS_HOST" : "192.168.54.208",
-         "MESOS_APPID" : "gw"
+         "MESOS_APPID" : "km"
 	},
       "minimumHealthCapacity" :0,
       "maximumOverCapacity" : 0.0
