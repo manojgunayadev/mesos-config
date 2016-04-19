@@ -58,6 +58,7 @@
          "SVN_USER" : "manojg@wso2.com",
          "SVN_PASSWORD" : "manoj@Gunaya123",
          "MESOS_HOST" : "192.168.54.208",
+         "MESOS_PORT" : "8080",
          "MESOS_APPID" : "gw"
 	},
       "minimumHealthCapacity" :0,
