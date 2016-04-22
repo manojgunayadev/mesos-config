@@ -1,9 +1,0 @@
-{
-    "id":"new1",
-    "cmd":"sleep 100",
-    "cpus":0.1,
-    "mem":16,
-    "instances":1,
-      "minimumHealthCapacity" :0,
-      "maximumOverCapacity" : 0.0
-}

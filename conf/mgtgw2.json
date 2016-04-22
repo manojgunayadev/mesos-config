@@ -1,44 +1,36 @@
 {
-	"id": "pubstore2",
-	"cpus": 0.30,
+	"id": "mgtgw2",
+	"cpus": 0.40,
 	"mem": 1024,
 	"instances": 1,
-    "labels":{
-    "HAPROXY_GROUP":"external"
-    },	
+	"labels":{
+       "HAPROXY_GROUP":"external",
+       "HAPROXY_0_STICKY":"true",
+       "HAPROXY_0_REDIRECT_TO_HTTPS":"true",
+       "HAPROXY_0_VHOST":"mgtgw2.service.mesos",
+       "HAPROXY_0_BACKEND_HTTP_OPTIONS":"  option forwardfor\n  no option http-keep-alive\n  http-request set-header X-Forwarded-Port %[dst_port]\n  http-request add-header X-Forwarded-Proto https if { ssl_fc }\n"
+    },
 	"container": {
 		"type": "DOCKER",
 		"docker": {
-			"image": "pubstore:latest",
+			"image": "apim:latest",
 			"network": "BRIDGE",
               "portMappings": [
                 { 
                 "containerPort": 0, 
                  "hostPort": 0, 
-                 "protocol": "tcp" 
+                 "protocol": "tcp"
                  },
                 {
                   "containerPort": 9443,
                   "hostPort": 0,
-                  "servicePort" : 10116,                  
+                  "servicePort": 10102,
                   "protocol": "tcp"
                 },
                 {
                   "containerPort": 9763,
                   "hostPort": 0,
-                  "servicePort" : 10117,                    
-                  "protocol": "tcp"
-                },
-                {
-                  "containerPort": 8280,
-                  "hostPort": 0,
-                  "servicePort" : 10118,                    
-                  "protocol": "tcp"
-                },
-                {
-                  "containerPort": 8243,
-                  "hostPort": 0,
-                  "servicePort" : 10119,                    
+                  "servicePort": 10103,
                   "protocol": "tcp"
                 }
               ],
@@ -54,18 +46,18 @@
 	},
 	"env": {
 		 "MYSQL_ROOT_PASSWORD": "password",
-		 "APIM_NODE": "apimanager::pubstore",
          "MYSQL_PORT_3306_TCP_ADDR": "mysql.marathon.slave.mesos.",
          "MYSQL_PORT_3306_tcp_PORT" : "32000",         
-         "MGT_HOST_NAME" : "pubstore2.api.verizon.com",
-         "SUB_CLUSTER_DOMAIN" : "worker",
-         "DEPSYNC_SVN_REPO" : "https://svn.wso2.com/wso2/interns/2013/manojg/newcluster/",
-         "SVN_USER" : "manojg@wso2.com",
-         "SVN_PASSWORD" : "manoj@Gunaya123",
+         "MGT_HOST_NAME" : "mgtgw2.api.verizon.com",
+         "APIM_NODE": "apimanager::gateway",
+         "SUB_CLUSTER_DOMAIN" : "mgt",
+         "DEPSYNC_SVN_REPO" : "",
+         "SVN_USER" : "",
+         "SVN_PASSWORD" : "",
          "MESOS_HOST" : "192.168.54.208",
-         "MESOS_PORT" : "8080",
-         "MESOS_APPID" : "pubstore2",
-         "MESOS_APPS" : "pubstore1,pubstore2"
+         "MESOS_PORT" : "8080", 
+         "MESOS_APPID" : "mgtgw1",
+         "MESOS_APPS" : "mgtgw1,mgtgw2,gw1,gw2"
 	},
       "minimumHealthCapacity" :0,
       "maximumOverCapacity" : 0.0
