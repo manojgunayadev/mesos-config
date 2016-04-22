@@ -3,6 +3,9 @@
 	"cpus": 0.25,
 	"mem": 512,
 	"instances": 1,
+  "labels":{
+    "HAPROXY_GROUP":"internal"
+  },	
 	"container": {
 		"type": "DOCKER",
 		"docker": {
@@ -12,7 +15,7 @@
                 {
                   "containerPort": 3306,
                   "hostPort": 32000,
-                  "servicePort" : 2000 ,
+                  "servicePort" : 10000,
                   "protocol": "tcp"
                 }
                 ],
