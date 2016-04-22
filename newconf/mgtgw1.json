@@ -1,0 +1,64 @@
+{
+	"id": "mgtgw1",
+	"cpus": 0.40,
+	"mem": 1024,
+	"instances": 1,
+	"labels":{
+       "HAPROXY_GROUP":"external",
+       "HAPROXY_0_STICKY":"true",
+       "HAPROXY_0_REDIRECT_TO_HTTPS":"true",
+       "HAPROXY_0_VHOST":"mgtgw1.service.mesos",
+       "HAPROXY_0_BACKEND_HTTP_OPTIONS":"  option forwardfor\n  no option http-keep-alive\n  http-request set-header X-Forwarded-Port %[dst_port]\n  http-request add-header X-Forwarded-Proto https if { ssl_fc }\n"
+    },
+	"container": {
+		"type": "DOCKER",
+		"docker": {
+			"image": "apim:latest",
+			"network": "BRIDGE",
+              "portMappings": [
+                { 
+                "containerPort": 0, 
+                 "hostPort": 0, 
+                 "protocol": "tcp"
+                 },
+                {
+                  "containerPort": 9443,
+                  "hostPort": 0,
+                  "servicePort": 10100,
+                  "protocol": "tcp"
+                },
+                {
+                  "containerPort": 9763,
+                  "hostPort": 0,
+                  "servicePort": 10101,
+                  "protocol": "tcp"
+                }
+              ],
+                "parameters": [
+                {"key": "dns", "value": "192.168.54.209"},
+                { "key": "add-host", "value": "gw.api.verizon.com:192.168.54.208"},
+                { "key": "add-host", "value": "mesos-master:192.168.54.208"},
+                { "key": "add-host", "value": "mgtgw.api.verizon.com:192.168.54.209" },
+                { "key": "add-host", "value": "pubstore.api.verizon.com:192.168.54.205"},
+                { "key": "add-host", "value": "km.api.verizon.com:192.168.54.221"}
+                ]
+		}
+	},
+	"env": {
+		 "MYSQL_ROOT_PASSWORD": "password",
+         "MYSQL_PORT_3306_TCP_ADDR": "mysql.marathon.slave.mesos.",
+          "APIM_NODE": "apimanager::gateway",
+         "MYSQL_PORT_3306_tcp_PORT" : "32000",         
+         "MGT_HOST_NAME" : "mgtgw1.api.verizon.com",
+         "SUB_CLUSTER_DOMAIN" : "mgt",
+         "DEPSYNC_SVN_REPO" : "https://svn.wso2.com/wso2/interns/2013/manojg/newcluster/",
+         "SVN_USER" : "manojg@wso2.com",
+         "SVN_PASSWORD" : "manoj@Gunaya123",
+         "MESOS_HOST" : "192.168.54.208",
+         "MESOS_PORT" : "8080", 
+         "MESOS_APPID" : "mgtgw1",
+         "MESOS_APPS" : "mgtgw1,mgtgw2,gw1,gw2"
+	},
+      "minimumHealthCapacity" :0,
+      "maximumOverCapacity" : 0.0
+}
